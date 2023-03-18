@@ -8,10 +8,10 @@ class RestaurantsController < ApplicationController
 
     def show
         restaurant = Restaurant.find(params[:id])
-        render json: restaurant
+        render json: restaurant, include: ['pizzas']
     end
 
-# , include: { restaurant_pizzas: { include: :pizzas } }
+
 # , include: { restaurant_pizzas: { include: :pizzas } }
     private
 
