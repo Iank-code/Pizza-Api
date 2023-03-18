@@ -6,8 +6,8 @@
 #   movies = Movie.create([{ name: "Star Wars" }, { name: "Lord of the Rings" }])
 #   Character.create(name: "Luke", movie: movies.first)
 
-Pizza.delete_all
-Restaurant.delete_all
+# Pizza.delete_all
+# Restaurant.delete_all
 
 
 20.times do
@@ -22,4 +22,12 @@ end
     address = Faker::Restaurant.description 
 
     restaurant = Restaurant.create(name: name, address: address)
+end
+
+6.times do
+    RestaurantPizza.create(
+        price: Faker::Commerce.price,
+        pizza_id: Pizza.all.sample.id,
+        restaurant_id: Restaurant.all.sample.id,
+    )
 end
