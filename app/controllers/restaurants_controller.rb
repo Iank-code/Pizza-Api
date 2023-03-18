@@ -12,7 +12,6 @@ class RestaurantsController < ApplicationController
     end
 
 
-# , include: { restaurant_pizzas: { include: :pizzas } }
     private
 
     def restaurant_params
