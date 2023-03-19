@@ -30,7 +30,7 @@ class RestaurantPizzasController < ApplicationController
         random_pizza = Pizza.all.sample
 
         new_restaurant_pizza = RestaurantPizza.create(
-            price: create_params,
+            price: params[:price],
             pizza_id: random_pizza.id,
             restaurant_id: random_restaurant.id
         )
