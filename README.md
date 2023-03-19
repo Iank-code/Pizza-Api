@@ -1,24 +1,90 @@
-# README
+# Restaurant Api
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+This is a backend project made by Ruby On Rails. It
 
-Things you may want to cover:
+<!-- * Ruby version -->
 
-* Ruby version
+## Dependencies
 
-* System dependencies
+- Faker
+- Active_model_serializers
+- sqlite3
+- Rake
 
-* Configuration
+## How to run
 
-* Database creation
+To be able to use it, you will need to clone it into your machine using the following command.
 
-* Database initialization
+    git clone git@github.com:Iank-code/Pizza-Api.git
+    cd Pizza-Api
+    bundle install
+    rails db:migrate db:seed
+    rails s
 
-* How to run the test suite
+This will also start the server which will listen on port 3000
 
-* Services (job queues, cache servers, search engines, etc.)
+## Routes
 
-* Deployment instructions
+### GET
 
-* ...
+    /restaurants
+
+Returns all restaurants
+
+GET
+
+    /restaurants/:id
+
+Return the specific `Restaurant` you want with its associated meal or pizza.
+
+If the `Restaurant` does not exist, it returns the following JSON data, along with
+the appropriate HTTP status code:
+
+```
+{
+  "error": "Restaurant not found"
+}
+```
+
+DELETE
+
+```
+/restaurants/:id
+```
+
+If the `Restaurant` exists, it removes it from the database, along with
+any `RestaurantPizza`s that are associated with it.
+
+After deletion, it will return an _empty_ response body, along with the
+appropriate HTTP status code.
+
+If the `Restaurant` does not exist, it returns the following JSON data, along with
+the appropriate HTTP status code:
+
+```
+{
+  "error": "Restaurant not found"
+}
+```
+
+GET
+
+    /pizzas
+
+Return all the foods.
+
+POST
+
+    /restaurant_pizzas
+
+This route creates a new `RestaurantPizza` that is associated with an
+existing `Pizza` and `Restaurant`.
+
+If the `RestaurantPizza` is **not** created successfully, it will return a
+JSON data, along with the appropriate HTTP status code:
+
+```
+{
+  "errors": ["validation errors"]
+}
+```
