@@ -26,14 +26,15 @@ class RestaurantPizzasController < ApplicationController
     #     end
     # end
     def create
-        random_restaurant = Restaurant.all.sample
-        random_pizza = Pizza.all.sample
+        # random_restaurant = Restaurant.all.sample
+        # random_pizza = Pizza.all.sample
 
-        new_restaurant_pizza = RestaurantPizza.create(
+        new_restaurant_pizza = RestaurantPizza.create!(
             price: params[:price],
-            pizza_id: random_pizza.id,
-            restaurant_id: random_restaurant.id
+            pizza_id: params[:pizza_id],
+            restaurant_id: params[:restaurant_id]
         )
+        # new_restaurant_pizza = RestaurantPizza.create(create_params)
 
         if new_restaurant_pizza.valid?
             render json: new_restaurant_pizza.pizza, status: :created
@@ -47,7 +48,7 @@ class RestaurantPizzasController < ApplicationController
     private
 
     def create_params
-        params.permit(:price)
+        params.permit(:price, :pizza_id, :restaurant_id)
     end
     
     def validation_error
