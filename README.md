@@ -1,39 +1,114 @@
+ Restaurant Api
 # Rails Practice Challenge - Apartments
 
+This is a backend project made by Ruby On Rails. It provides all data belonging to `Restaurant`, `Pizza` and its joining table `Restaurant_pizza`
 ## Setup
 
+In this project, I demonstrate their relationships in the model directory and serializers.
+
+## Ruby version
+
+- Ruby 2.7.4
+
+## Dependencies
+
+- Faker
+- Active_model_serializers
+- sqlite3
+- Rake
+
+## How to run
+
+To be able to use it, you will need to clone it into your machine using the following command.
+
+    git clone git@github.com:Iank-code/Pizza-Api.git
+    cd Pizza-Api
+    bundle install
+    rails db:migrate db:seed
+    rails s
+
+This will also start the server which will listen on port 3000
+
+```
+http://127.0.0.1:3000
+```
+
+## Routes
+
+GET
+
+    /restaurants
+
+Returns all restaurants
+
+GET
+
+    /restaurants/:id
+
+Return the specific `Restaurant` you want with its associated meal or pizza.
+
+If the `Restaurant` does not exist, it returns the following JSON data, along with
+the appropriate HTTP status code:
 To download the dependencies for backend, run:
 
 ```console
 $ bundle install
 ```
+{
+  "error": "Restaurant not found"
+}
+```
 
+DELETE
+
+```
+/restaurants/:id
+```
 There is some starter code in the `db/seeds.rb` file so that once you've
 generated the models, you'll be able to create data to test your application.
 
+If the `Restaurant` exists, it removes it from the database, along with
+any `RestaurantPizza`s that are associated with it.
+
+After deletion, it will return an _empty_ response body, along with the
+appropriate HTTP status code.
+
+If the `Restaurant` does not exist, it returns the following JSON data, along with
+the appropriate HTTP status code:
 You can run your Rails API on [`localhost:3000`](http://localhost:3000) by running:
 
+```
+{
+  "error": "Restaurant not found"
+}
 ```console
 $ rails s
 ```
 
+GET
 There are no tests for this application, so you'll need to check your progress
 by running the server and using Postman to make requests.
 
+    /pizzas
 ## Introduction
 
+Return all the foods.
 We're going to build an API for an apartment management company. Create the
 following database structure. You will have three models (and their
 corresponding tables), `Apartment`, `Tenant` and `Lease`, with the following
 relationships:
 
+POST
 - A tenant has many apartments and has many leases
 - An apartment has many tenants and has many leases
 - A lease belongs to an apartment and belongs to a tenant
 
+    /restaurant_pizzas
 The models should have the following attributes (along with any attributes
 needed to create the relationships defined above):
 
+This route creates a new `RestaurantPizza` that is associated with an
+existing `Pizza` and `Restaurant`.
 - Apartment
   - number
 - Tenant
@@ -42,23 +117,48 @@ needed to create the relationships defined above):
 - Lease
   - rent
 
+If the `RestaurantPizza` is **not** created successfully, it will return a
+JSON data, along with the appropriate HTTP status code:
 Make sure to define validations for your models so that no bad data can be saved
 to the database.
 
+```
+{
+  "errors": ["validation errors"]
+}
+```
 ## Deliverables
 
+## Contributor
 As a user, I can:
 
+The project is contributed by Ian Kamau [ https://github.com/Iank-code ]
 - Create, read, update and delete **Apartments**
 - Create, read, update and delete **Tenants**
 - Create and delete **Lease**
 
+## License
 Follow good API design practices and use RESTful routing conventions. Make sure
 to handle errors and invalid data by returning the appropriate status code along
 with a message.
 
+This project is licensed under the MIT license.
 ## Instructions
 
-- Time yourself while working on the deliverables
-- Commit when you hit 75 minutes
-- When you have finished all deliverables, commit again.
+```
+Copyright (c) 2023 Ian Kamau
+Permission is hereby granted, free of charge, to any person obtaining a copy
+of this software and associated documentation files (the "Software"), to deal
+in the Software without restriction, including without limitation the rights
+to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+copies of the Software, and to permit persons to whom the Software is
+furnished to do so, subject to the following conditions:
+The above copyright notice and this permission notice shall be included in all
+copies or substantial portions of the Software.
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+SOFTWARE.
