@@ -2,10 +2,6 @@
 # Rails Practice Challenge - Apartments
 
 This is a backend project made by Ruby On Rails. It provides all data belonging to `Restaurant`, `Pizza` and its joining table `Restaurant_pizza`
-## Setup
-
-In this project, I demonstrate their relationships in the model directory and serializers.
-
 ## Ruby version
 
 - Ruby 2.7.4
@@ -86,22 +82,13 @@ $ rails s
 ```
 
 GET
-There are no tests for this application, so you'll need to check your progress
-by running the server and using Postman to make requests.
 
     /pizzas
-## Introduction
 
 Return all the foods.
-We're going to build an API for an apartment management company. Create the
-following database structure. You will have three models (and their
-corresponding tables), `Apartment`, `Tenant` and `Lease`, with the following
-relationships:
+:
 
 POST
-- A tenant has many apartments and has many leases
-- An apartment has many tenants and has many leases
-- A lease belongs to an apartment and belongs to a tenant
 
     /restaurant_pizzas
 The models should have the following attributes (along with any attributes
@@ -109,13 +96,6 @@ needed to create the relationships defined above):
 
 This route creates a new `RestaurantPizza` that is associated with an
 existing `Pizza` and `Restaurant`.
-- Apartment
-  - number
-- Tenant
-  - name (must be present)
-  - age (must be >= 18)
-- Lease
-  - rent
 
 If the `RestaurantPizza` is **not** created successfully, it will return a
 JSON data, along with the appropriate HTTP status code:
@@ -127,23 +107,8 @@ to the database.
   "errors": ["validation errors"]
 }
 ```
-## Deliverables
-
-## Contributor
-As a user, I can:
-
-The project is contributed by Ian Kamau [ https://github.com/Iank-code ]
-- Create, read, update and delete **Apartments**
-- Create, read, update and delete **Tenants**
-- Create and delete **Lease**
-
-## License
-Follow good API design practices and use RESTful routing conventions. Make sure
-to handle errors and invalid data by returning the appropriate status code along
-with a message.
-
+## LICENCE
 This project is licensed under the MIT license.
-## Instructions
 
 ```
 Copyright (c) 2023 Ian Kamau
